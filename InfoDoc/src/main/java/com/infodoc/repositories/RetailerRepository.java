@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.infodoc.model.Retailer;
 
 @Repository
-public interface RetailerRepository extends JpaRepository<Retailer,Integer> {
+public interface RetailerRepository extends JpaRepository<Retailer,String> {
 
 }

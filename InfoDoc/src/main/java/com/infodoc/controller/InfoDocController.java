@@ -9,9 +9,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.infodoc.model.Doctor;
+import com.infodoc.model.Request;
 import com.infodoc.model.Retailer;
 import com.infodoc.services.DoctorService;
-import com.infodoc.services.MappingService;
+import com.infodoc.services.RequestService;
 import com.infodoc.services.RetailerService;
 
 @RestController
@@ -22,7 +23,7 @@ public class InfoDocController {
 	@Autowired
 	private RetailerService retailerService;
 	@Autowired
-	private MappingService mappingService;
+	private RequestService requestService;
 	
 	@PostMapping("/retailer")
 	public String createReatilers(@RequestBody Retailer retailer) {
@@ -33,12 +34,12 @@ public class InfoDocController {
 		return retailerService.findAllReatilers();
 	}
 	@GetMapping("/findRetailerById/{id}")
-	public Retailer findRetailerById(@PathVariable("id") int id) {
+	public Retailer findRetailerById(@PathVariable("id") String id) {
 		return retailerService.findRetailerById(id);
 	}
 	@GetMapping("/doctorsInStoreById/{id}")
-	public List<Doctor> findAllDoctorsById(@PathVariable("id") int id) {
-		return retailerService.findAllDoctorsByStoreId(id);
+	public List<Doctor> findAllDoctorsById(@PathVariable("id") String id) {
+		return retailerService.findAllDoctorsByRetailerDoctors(id);
 	}
 	
 	@PostMapping("/doctor")
@@ -53,8 +54,21 @@ public class InfoDocController {
 	public Doctor findDoctorByLicenseNo(@PathVariable("licenseNo") String licenseNo) {
 			return doctorService.findDoctorByLicenseNo(licenseNo);
 	}
-	@PostMapping("/mapRetailerDoctor/{retailerId}/{licenseNo}")
-	public String mapReatilerDoctor(@PathVariable("retailerId") int retailerId,@PathVariable("licenseNo") String licenseNo) {
-		return mappingService.mapReatilerDoctor(retailerId, licenseNo);
+	@PostMapping("/request")
+	public String sendRequest(@RequestBody Request request) {
+		return requestService.createRequest(request);
+	}
+	@GetMapping("sentRequest/{id}") 
+	public List<Request> getSentRequest(@PathVariable("id")String id){
+		return requestService.getSentRequestById(id);
+	}
+	@GetMapping("receivedRequest/{id}") 
+	public List<Request> getReceivedRequest(@PathVariable("id")String id){
+		return requestService.getRecievedRequestById(id);
+	}
+	@PostMapping("/approveRequest/{requestId}")
+	public String approveRequest(@PathVariable("requestId")Integer requestId)
+	{
+		return requestService.approveRequestById(requestId);
 	}
 }
