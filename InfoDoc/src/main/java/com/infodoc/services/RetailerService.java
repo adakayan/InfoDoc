@@ -32,7 +32,7 @@ public class RetailerService {
 		if(retailer2.isPresent())
 			resultString = "Retailer/Store already present with store ID: "+idStr;
 		else {
-			retailer.setStoreId(idStr);
+			retailer.setRetailerId(idStr);
 			retailerRepo.save(retailer);
 			resultString = "Retailer saved successfully..... with store ID: "+idStr;
 		}

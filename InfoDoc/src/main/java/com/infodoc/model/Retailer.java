@@ -37,10 +37,10 @@ public class Retailer {
 	}
 	@Id
 	@Column(name="retailer_id")
-	public String getStoreId() {
+	public String getRetailerId() {
 		return retailerId;
 	}
-	public void setStoreId(String retailerId) {
+	public void setRetailerId(String retailerId) {
 		this.retailerId = retailerId;
 	}
 	@Column(name="store_name",nullable = false)
