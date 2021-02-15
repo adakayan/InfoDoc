@@ -11,7 +11,7 @@ import javax.persistence.JoinColumn;
 @Entity
 @Table(name="retailers")
 public class Retailer {
-	private int storeId;
+	private String retailerId;
 	private String storeName;
 	private Address address;
 	private String openHours;
@@ -22,10 +22,10 @@ public class Retailer {
 	private String email;
 	public Retailer() {
 	}
-	public Retailer(int storeId, String storeName, Address address, String openHours, String closeHours,
+	public Retailer(String retailerId, String storeName, Address address, String openHours, String closeHours,
 			String offDay1, String offDay2, long phNo, String email) {
 		super();
-		this.storeId = storeId;
+		this.retailerId = retailerId;
 		this.storeName = storeName;
 		this.address = address;
 		this.openHours = openHours;
@@ -36,12 +36,12 @@ public class Retailer {
 		this.email = email;
 	}
 	@Id
-	@Column(name="store_id")
-	public int getStoreId() {
-		return storeId;
+	@Column(name="retailer_id")
+	public String getStoreId() {
+		return retailerId;
 	}
-	public void setStoreId(int storeId) {
-		this.storeId = storeId;
+	public void setStoreId(String retailerId) {
+		this.retailerId = retailerId;
 	}
 	@Column(name="store_name",nullable = false)
 	public String getStoreName() {
@@ -103,7 +103,7 @@ public class Retailer {
 	
 	@Override
 	public String toString() {
-		return "Retailer [storeId=" + storeId + ", storeName=" + storeName + ", address=" + address + ", openHours="
+		return "Retailer [retailerId=" + retailerId + ", storeName=" + storeName + ", address=" + address + ", openHours="
 				+ openHours + ", closeHours=" + closeHours + ", offDay1=" + offDay1 + ", offDay2=" + offDay2 + ", phNo="
 				+ phNo + ", email=" + email + "]";
 	}

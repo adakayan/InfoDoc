@@ -9,5 +9,5 @@ import com.infodoc.model.RetailerDoctor;
 
 @Repository
 public interface RetailerDoctorRepository extends JpaRepository<RetailerDoctor,Integer> {
-	public List<RetailerDoctor> findAllByStoreId(int storeId);
+	public List<RetailerDoctor> findAllByRetailerId(String retailerId);
 }
